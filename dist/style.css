@@ -67,11 +67,18 @@ button {
   text-align: left;
   border-radius: 8px;
   font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 button:hover {
   font-weight: 700;
   background-color: gray;
+}
+
+.remove:hover {
+  background-color: rgb(255, 137, 137);
 }
 
 i {

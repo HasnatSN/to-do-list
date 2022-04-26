@@ -1,1 +1,3 @@
-console.log("Works!")
+import {addProject} from "./nav";
+
+addProject();
