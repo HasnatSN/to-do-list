@@ -1,3 +1,5 @@
-import {addProject} from "./nav";
+import {Project} from "./nav";
 
-addProject();
+let pro = new Project;
+
+pro.addProject();

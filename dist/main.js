@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nav__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nav */ \"./src/nav.js\");\n\r\n\r\n(0,_nav__WEBPACK_IMPORTED_MODULE_0__.addProject)();\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nav__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nav */ \"./src/nav.js\");\n\r\n\r\nlet pro = new _nav__WEBPACK_IMPORTED_MODULE_0__.Project;\r\n\r\npro.addProject();\r\n\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nav
   \********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addProject\": () => (/* binding */ addProject)\n/* harmony export */ });\nclass Project {}\r\n\r\nfunction removeProjectFolder() {}\r\n\r\nfunction newProjectFolder() {\r\n  let newButton = document.createElement(\"button\");\r\n  newButton.setAttribute(\"data-index\", 1);\r\n  newButton.innerHTML =\r\n    '<div><i class=\"fa-solid fa-folder\"></i> Project X</div><button class=\"remove\"><i class=\"fa-solid fa-xmark\"></i></button>';\r\n  return newButton;\r\n}\r\n\r\nfunction addProject() {\r\n  const addProjectBtn = document.querySelector(\".add-project\");\r\n  addProjectBtn.addEventListener(\"click\", () => {\r\n    const nav = document.querySelector(\"nav\");\r\n    nav.appendChild(newProjectFolder());\r\n  });\r\n}\r\n\r\n\r\n\n\n//# sourceURL=webpack://to-do-list/./src/nav.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Project\": () => (/* binding */ Project)\n/* harmony export */ });\nclass Project {\r\n  constructor() {\r\n    this.projectsArray = [];\r\n  }\r\n\r\n  newProjectFolder() {\r\n    let newButton = document.createElement(\"button\");\r\n    newButton.setAttribute(\"data-index\", this.projectsArray.length);\r\n    newButton.innerHTML =\r\n      '<div><i class=\"fa-solid fa-folder\"></i> Project X</div><button class=\"remove\"><i class=\"fa-solid fa-xmark\"></i></button>';\r\n    this.projectsArray.push(newButton);\r\n    console.log(this.projectsArray);\r\n    return newButton;\r\n  }\r\n\r\n  addProject() {\r\n    const addProjectBtn = document.querySelector(\".add-project\");\r\n    addProjectBtn.addEventListener(\"click\", () => {\r\n      const nav = document.querySelector(\"nav\");\r\n      nav.appendChild(this.newProjectFolder());\r\n    });\r\n  }\r\n}\r\n\r\n\r\n\n\n//# sourceURL=webpack://to-do-list/./src/nav.js?");
 
 /***/ })
 
