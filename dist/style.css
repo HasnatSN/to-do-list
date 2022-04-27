@@ -46,6 +46,10 @@ nav {
   gap: 1rem;
 }
 
+.project-name {
+  text-align: left;
+}
+
 .working-area {
   flex: 1;
   display: flex;
