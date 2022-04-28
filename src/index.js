@@ -1,5 +1,5 @@
 import {Project} from "./nav";
 
-let pro = new Project;
+let projectClass = new Project;
 
-pro.addButton();
+projectClass.addProjectButtonToNav();

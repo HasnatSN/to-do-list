@@ -3,30 +3,58 @@ class Project {
     this.projectsArray = [];
   }
 
-  createSubButtons() {
-    
+  createProjectButton() {
+    let button = document.createElement("button");
+    button.setAttribute("data-index", this.projectsArray);
+    return button;
+  }
+
+  createDivWithI() {
+    let divWithI = document.createElement("div");
+    divWithI.innerHTML = '<div><i class="fa-solid fa-folder">';
+    return divWithI;
+  }
+
+  createFolderNameDiv(folderName) {
+    let folderNameDiv = document.createElement("div");
+    folderNameDiv.classList.add("project-name");
+    folderNameDiv.textContent = folderName;
+    return folderNameDiv;
+  }
+
+  createRemoveBtn() {
+    let removeBtn = document.createElement("button");
+    removeBtn.innerHTML =
+      '<button class="remove"><i class="fa-solid fa-xmark"></i></button>';
+    return removeBtn;
+  }
+
+  appendChildrenToParent(parent, ...args) {
+    for (let child of args) {
+      parent.appendChild(child);
+    }
   }
 
   createNewButton() {
-    this.button = document.createElement("button");
-    this.button.setAttribute("data-index", this.projectsArray);
-    this.divWithI = document.createElement("div");
-    this.divWithI.innerHTML = '<div><i class="fa-solid fa-folder">';
-    this.folderName = prompt("Folder name?")
-    this.folderNameDiv = document.createElement("div");
-    this.folderNameDiv.classList.add("project-name")
-    this.folderNameDiv.textContent = this.folderName;
-    this.removeBtn = document.createElement("button");
-    this.removeBtn.innerHTML =
-      '<button class="remove"><i class="fa-solid fa-xmark"></i></button>';
-    this.button.appendChild(this.divWithI);
-    this.button.appendChild(this.folderNameDiv);
-    this.button.appendChild(this.removeBtn);
+    // create all the elements for the custom project button
+    this.button = this.createProjectButton();
+    this.divWithI = this.createDivWithI();
+    this.folderNameDiv = this.createFolderNameDiv(prompt("Folder name?"));
+    this.removeBtn = this.createRemoveBtn();
+
+    // append all the children elements to the parent button
+    this.appendChildrenToParent(
+      this.button,
+      this.divWithI,
+      this.folderNameDiv,
+      this.removeBtn
+    );
+
     this.projectsArray.push(this.button);
     return this.button;
   }
 
-  addButton() {
+  addProjectButtonToNav() {
     const addProjectBtn = document.querySelector(".add-project");
     addProjectBtn.addEventListener("click", () => {
       const nav = document.querySelector("nav");
@@ -35,32 +63,4 @@ class Project {
   }
 }
 
-// {/* <div><i class="fa-solid fa-folder"></i> Project X</div> */}
-
 export { Project };
-
-// newProjectFolder() {
-//     let newButton = document.createElement("button");
-//     newButton.setAttribute("data-index", this.projectsArray.length);
-//     newButton.innerHTML =
-// '<div><i class="fa-solid fa-folder"></i> Project X</div><button class="remove"><i class="fa-solid fa-xmark"></i></button>';
-//     this.projectsArray.push(newButton);
-//     console.log(this.projectsArray);
-//     this.removeFolder(newButton);
-//     return newButton;
-//   }
-
-//   addProject() {
-//     const addProjectBtn = document.querySelector(".add-project");
-//     addProjectBtn.addEventListener("click", () => {
-//       const nav = document.querySelector("nav");
-//       nav.appendChild(this.newProjectFolder());
-//     });
-//   }
-
-//   removeFolder(button) {
-//     console.log(button);
-//     //   button.addEventListener("click", () => {
-
-//     //   })
-//   }
