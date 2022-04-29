@@ -15,22 +15,24 @@ class Project {
     return divWithI;
   }
 
+  getNameOfFolder() {
+    
+  }
+
   createFolderNameDiv() {
     let folderNameDiv = document.createElement("div");
     folderNameDiv.classList.add("project-name");
-    folderNameDiv.textContent = `${this.projectsArray.length}`;
+    folderNameDiv.innerHTML = this.getNameOfFolder();
     return folderNameDiv;
   }
 
   removeProjectBtnFromArray(index) {
     this.projectsArray.splice(index, 1);
-    console.log(this.projectsArray);
   }
 
   removeProjectBtnFromDom(index) {
     const nav = document.querySelector("nav");
     let childToBeRemoved = nav.childNodes[index + 11];
-    console.log(childToBeRemoved)
     childToBeRemoved.parentNode.removeChild(childToBeRemoved);
   }
 
@@ -47,9 +49,8 @@ class Project {
   createRemoveBtn() {
     let removeBtn = document.createElement("button");
     removeBtn.setAttribute("data-index", this.projectsArray.length);
-    removeBtn.innerHTML =
-      '<button class="remove"><i class="fa-solid fa-xmark"></i></button>';
-
+    removeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+    removeBtn.classList.add("remove");
     this.removeProjectBtn(removeBtn);
     return removeBtn;
   }

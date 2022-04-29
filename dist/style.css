@@ -81,8 +81,12 @@ button:hover {
   background-color: gray;
 }
 
+.remove {
+  background-color: inherit;
+}
+
 .remove:hover {
-  background-color: rgb(255, 137, 137);
+  cursor: pointer;
 }
 
 i {
