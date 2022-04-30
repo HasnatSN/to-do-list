@@ -16,7 +16,7 @@ class Project {
   }
 
   getNameOfFolder() {
-    
+       
   }
 
   createFolderNameDiv() {

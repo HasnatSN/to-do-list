@@ -46,6 +46,41 @@ nav {
   gap: 1rem;
 }
 
+input {
+  height: 2rem;
+  border-radius: 4px;
+  border: none;
+  padding: 0.5rem;
+}
+
+.name-input {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.name-input input {
+  grid-area: 1 / 1 / span 1 / span 2;
+  height: 2.5rem;
+  outline: none;
+}
+
+.create-btn {
+  background-color: rgb(121, 255, 121);
+  padding: 1rem;
+  max-height: 2.5rem;
+}
+
+.cancel-btn {
+  background-color: rgb(255, 133, 133);
+  padding: 1rem;
+  max-height: 2.5rem;
+}
+
+button:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+}
+
 .project-name {
   text-align: left;
 }
@@ -74,11 +109,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-button:hover {
-  font-weight: 700;
-  background-color: gray;
 }
 
 .remove {
