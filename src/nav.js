@@ -16,7 +16,9 @@ class Project {
   }
 
   getNameOfFolder() {
-    return this.projectsArray.length;
+    let currentFolderName = document.querySelector(".folder-name-input").value;
+    document.querySelector(".folder-name-input").value = "";
+    return currentFolderName;
   }
 
   createFolderNameDiv() {
@@ -42,7 +44,6 @@ class Project {
         (button) => removeBtn.dataset.index == button.dataset.index
       );
       this.removeProjectBtnFromArray(index);
-      console.log(index, this.projectsArray);
       this.removeProjectBtnFromDom(index);
     });
   }
@@ -85,11 +86,14 @@ class Project {
     const createButton = document.querySelector(".create-btn");
     const nav = document.querySelector("nav");
 
-    createButton.addEventListener("click", () => {
-      nav.appendChild(this.createNewButton());
-      console.log(this.projectsArray);
-      nameInputDiv.classList.add("collapse-div");
-    });
+    createButton.addEventListener(
+      "click",
+      () => {
+        nav.appendChild(this.createNewButton());
+        nameInputDiv.classList.add("collapse-div");
+      },
+      { once: true }
+    );
   }
 
   cancelAddingNewFolder(nameInputDiv) {
@@ -97,6 +101,9 @@ class Project {
     cancelButton.addEventListener("click", () => {
       nameInputDiv.classList.add("collapse-div");
     });
+
+    this.getNameOfFolder();
+
   }
 
   addCollapseClassToDiv() {
@@ -109,7 +116,6 @@ class Project {
   addProjectButtonToNav() {
     const addProjectBtn = document.querySelector(".add-project");
     addProjectBtn.addEventListener("click", () => {
-      console.log(this.projectsArray);
       this.addCollapseClassToDiv();
     });
   }
