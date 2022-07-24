@@ -18,6 +18,9 @@ class Project {
   getNameOfFolder() {
     let currentFolderName = document.querySelector(".folder-name-input").value;
     document.querySelector(".folder-name-input").value = "";
+    if (currentFolderName === "") {
+      currentFolderName = "Unnamed";
+    }
     return currentFolderName;
   }
 
@@ -82,7 +85,7 @@ class Project {
     return this.button;
   }
 
-  createNewFolder(nameInputDiv) {
+  createNewFolder(nameInputDiv, addProjectBtn) {
     const createButton = document.querySelector(".create-btn");
     const nav = document.querySelector("nav");
 
@@ -91,26 +94,29 @@ class Project {
       () => {
         nav.appendChild(this.createNewButton());
         nameInputDiv.classList.add("collapse-div");
+        addProjectBtn.classList.remove("collapse-div")
       },
       { once: true }
     );
   }
 
-  cancelAddingNewFolder(nameInputDiv) {
+  cancelAddingNewFolder(nameInputDiv, addProjectBtn) {
     const cancelButton = document.querySelector(".cancel-btn");
     cancelButton.addEventListener("click", () => {
       nameInputDiv.classList.add("collapse-div");
+      addProjectBtn.classList.remove("collapse-div")
     });
 
     this.getNameOfFolder();
-
   }
 
   addCollapseClassToDiv() {
     const nameInputDiv = document.querySelector(".name-input");
+    const addProjectBtn = document.querySelector(".add-project")
     nameInputDiv.classList.remove("collapse-div");
-    this.cancelAddingNewFolder(nameInputDiv);
-    this.createNewFolder(nameInputDiv);
+    addProjectBtn.classList.add("collapse-div");
+    this.cancelAddingNewFolder(nameInputDiv, addProjectBtn);
+    this.createNewFolder(nameInputDiv, addProjectBtn);
   }
 
   addProjectButtonToNav() {
