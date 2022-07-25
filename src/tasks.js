@@ -6,41 +6,72 @@ class Tasks {
   getTodaysDate() {
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, "0");
-    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var mm = String(today.getMonth() + 1).padStart(2, "0");
     var yyyy = today.getFullYear();
-    return today = yyyy + "-" + mm + "-" + dd;
+    return (today = yyyy + "-" + mm + "-" + dd);
   }
 
   appendChildrenToParent(parent, ...args) {
     for (let child of args) {
-      parent.appendChild(child)
+      parent.appendChild(child);
     }
   }
 
-  createNewTask(name, index) {
-    const task = document.createElement("div");
-    task.classList.add("task");
-    const isDoneBtn = document.createElement("button");
-    const nameFieldBtn = document.createElement("button");
-    nameFieldBtn.classList.add("task-title")
-    const dateField = document.createElement("input");
-    dateField.classList.add("date-field")
+  getNameOfTask(nameFieldInput) {
+    const taskNameInput = document.querySelector(".task-name-input");
+    if (taskNameInput.value == "") {
+      nameFieldInput.setAttribute("value", "Unnamed");
+    } else {
+      nameFieldInput.setAttribute("value", taskNameInput.value);
+      taskNameInput.value = "";
+    }
+  }
 
-    isDoneBtn.innerText = "O"
-    nameFieldBtn.innerText = "Unnamed yet";
+  removeTaskFromDom() {
+    
+  }
+
+  createNewTaskDiv() {
+    const task = document.createElement("div");
+    const isDoneBtn = document.createElement("button");
+    const nameFieldInput = document.createElement("input");
+    const dateField = document.createElement("input");
+    const workingArea = document.querySelector(".working-area");
+
+    task.classList.add("task");
+    nameFieldInput.classList.add("task-title");
+    dateField.classList.add("date-field");
+
+    isDoneBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+    isDoneBtn.addEventListener("click", () => {
+      this.removeTaskFromDom()
+    })
 
     dateField.setAttribute("type", "date");
     dateField.setAttribute("value", this.getTodaysDate());
 
-    this.appendChildrenToParent(task, isDoneBtn, nameFieldBtn, dateField);
+    this.getNameOfTask(nameFieldInput);
 
-    const workingArea = document.querySelector(".working-area");
+    this.appendChildrenToParent(task, isDoneBtn, nameFieldInput, dateField);
+
     workingArea.appendChild(task);
 
-    // const taskDiv = document.createElement("div");
-    // taskDiv.innerHTML = "Task";
-    // const workingArea = document.querySelector(".working-area");
-    // workingArea.appendChild(taskDiv);
+    const nameInputDiv = document.querySelector(".name-input-tasks");
+    const addTaskBtn = document.querySelector(".add-task");
+
+    nameInputDiv.classList.add("collapse-div");
+    addTaskBtn.classList.remove("collapse-div");
+  }
+
+  createNewTask() {
+    const createTaskBtn = document.querySelector(".create-task-btn");
+    createTaskBtn.addEventListener(
+      "click",
+      () => {
+        this.createNewTaskDiv();
+      },
+      { once: true }
+    );
   }
 
   cancelAddingNewTask(nameInputDiv, addTaskBtn) {
@@ -49,8 +80,6 @@ class Tasks {
       nameInputDiv.classList.add("collapse-div");
       addTaskBtn.classList.remove("collapse-div");
     });
-
-    // this.getNameOfFolder();
   }
 
   addCollapseClassToDiv() {
@@ -61,7 +90,7 @@ class Tasks {
     addTaskBtn.classList.add("collapse-div");
 
     this.cancelAddingNewTask(nameInputDiv, addTaskBtn);
-    this.createNewTask(nameInputDiv);
+    this.createNewTask(nameInputDiv, addTaskBtn);
   }
 
   addTask() {

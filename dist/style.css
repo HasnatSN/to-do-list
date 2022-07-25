@@ -109,24 +109,42 @@ button:hover {
   background-color: rgb(199, 199, 199);
 }
 
-
 .task {
   display: flex;
   flex-direction: row;
   justify-content: left;
+  align-items: center;
   gap: 1rem;
+  border-bottom: 1px solid black;
+}
+
+.task i {
+  color: lightcoral;
 }
 
 .task button {
   background-color: white;
+  padding: 0;
+}
+
+.task button:hover {
+  cursor: pointer;
 }
 
 .task-title {
   width: 100%;
+  height: auto;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.task-title:hover {
+  cursor: auto;
 }
 
 .task input {
   min-width: 125px;
+  cursor: pointer;
 }
 
 button {
