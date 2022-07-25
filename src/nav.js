@@ -3,9 +3,10 @@ class Project {
     this.projectsArray = [];
   }
 
-  createProjectButton() {
+  createProjectButton(index) {
     let button = document.createElement("button");
-    button.setAttribute("data-index", this.projectsArray.length);
+    button.classList.add("folder-btn");
+    button.setAttribute("data-index", index);
     return button;
   }
 
@@ -36,9 +37,13 @@ class Project {
   }
 
   removeProjectBtnFromDom(index) {
-    const nav = document.querySelector("nav");
-    let childToBeRemoved = nav.childNodes[index + 13];
-    childToBeRemoved.parentNode.removeChild(childToBeRemoved);
+    const folders = document.querySelectorAll(".folder-btn");
+
+    for (let folder of folders) {
+      if (folder.dataset.index == index) {
+        folder.parentNode.removeChild(folder);
+      }
+    }
   }
 
   removeProjectBtn(removeBtn) {
@@ -47,13 +52,13 @@ class Project {
         (button) => removeBtn.dataset.index == button.dataset.index
       );
       this.removeProjectBtnFromArray(index);
-      this.removeProjectBtnFromDom(index);
+      this.removeProjectBtnFromDom(removeBtn.dataset.index);
     });
   }
 
-  createRemoveBtn() {
+  createRemoveBtn(index) {
     let removeBtn = document.createElement("button");
-    removeBtn.setAttribute("data-index", this.projectsArray.length);
+    removeBtn.setAttribute("data-index", index);
     removeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
     removeBtn.classList.add("remove");
     this.removeProjectBtn(removeBtn);
@@ -67,11 +72,12 @@ class Project {
   }
 
   createNewButton() {
+    let index = Math.floor(Math.random() * 1000000);
     // create all the elements for the custom project button
-    this.button = this.createProjectButton();
+    this.button = this.createProjectButton(index);
     this.divWithI = this.createDivWithI();
     this.folderNameDiv = this.createFolderNameDiv();
-    this.removeBtn = this.createRemoveBtn();
+    this.removeBtn = this.createRemoveBtn(index);
 
     // append all the children elements to the parent button
     this.appendChildrenToParent(
@@ -94,7 +100,7 @@ class Project {
       () => {
         nav.appendChild(this.createNewButton());
         nameInputDiv.classList.add("collapse-div");
-        addProjectBtn.classList.remove("collapse-div")
+        addProjectBtn.classList.remove("collapse-div");
       },
       { once: true }
     );
@@ -104,7 +110,7 @@ class Project {
     const cancelButton = document.querySelector(".cancel-btn");
     cancelButton.addEventListener("click", () => {
       nameInputDiv.classList.add("collapse-div");
-      addProjectBtn.classList.remove("collapse-div")
+      addProjectBtn.classList.remove("collapse-div");
     });
 
     this.getNameOfFolder();
@@ -112,7 +118,7 @@ class Project {
 
   addCollapseClassToDiv() {
     const nameInputDiv = document.querySelector(".name-input");
-    const addProjectBtn = document.querySelector(".add-project")
+    const addProjectBtn = document.querySelector(".add-project");
     nameInputDiv.classList.remove("collapse-div");
     addProjectBtn.classList.add("collapse-div");
     this.cancelAddingNewFolder(nameInputDiv, addProjectBtn);
