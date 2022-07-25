@@ -27,8 +27,14 @@ class Tasks {
     }
   }
 
-  removeTaskFromDom() {
-    
+  removeTaskFromDom(index) {
+    const taskList = document.querySelectorAll(".task");
+
+    for (let task of taskList) {
+      if (task.dataset.index == index) {
+        task.parentNode.removeChild(task);
+      }
+    }
   }
 
   createNewTaskDiv() {
@@ -38,17 +44,21 @@ class Tasks {
     const dateField = document.createElement("input");
     const workingArea = document.querySelector(".working-area");
 
+    let randomIndex = Math.floor(Math.random() * 1000000);
+
     task.classList.add("task");
     nameFieldInput.classList.add("task-title");
     dateField.classList.add("date-field");
 
     isDoneBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
     isDoneBtn.addEventListener("click", () => {
-      this.removeTaskFromDom()
-    })
+      this.removeTaskFromDom(isDoneBtn.dataset.index);
+    });
 
     dateField.setAttribute("type", "date");
     dateField.setAttribute("value", this.getTodaysDate());
+    task.setAttribute("data-index", randomIndex);
+    isDoneBtn.setAttribute("data-index", randomIndex);
 
     this.getNameOfTask(nameFieldInput);
 
