@@ -62,9 +62,7 @@ input {
   max-width: 100%;
 }
 
-.collapse-div {
-  display: none;
-}
+
 
 .name-input input {
   grid-area: 1 / 1 / span 1 / span 2;
@@ -195,4 +193,8 @@ footer i:hover {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.collapse-div {
+  display: none;
 }

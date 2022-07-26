@@ -42,7 +42,7 @@ class Tasks {
     const isDoneBtn = document.createElement("button");
     const nameFieldInput = document.createElement("input");
     const dateField = document.createElement("input");
-    const workingArea = document.querySelector(".working-area");
+    const taskArea = document.querySelector(".task-area");
 
     let randomIndex = Math.floor(Math.random() * 1000000);
 
@@ -64,7 +64,8 @@ class Tasks {
 
     this.appendChildrenToParent(task, isDoneBtn, nameFieldInput, dateField);
 
-    workingArea.appendChild(task);
+    taskArea.appendChild(task);
+    this.tasksArray.push(task);
 
     const nameInputDiv = document.querySelector(".name-input-tasks");
     const addTaskBtn = document.querySelector(".add-task");
