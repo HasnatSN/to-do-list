@@ -18,14 +18,16 @@ class InboxSystem {
     return result;
   }
 
-  showAllTasks(taskArea) {
+  showAllTasks(taskArea, inboxTitle) {
+    inboxTitle.innerText = "Inbox"
     taskArea = document.querySelectorAll(".date-field");
     for (let task of taskArea) {
       task.parentNode.classList.remove("collapse-div");
     }
   }
 
-  showTodaysTasks(taskArea) {
+  showTodaysTasks(taskArea, inboxTitle) {
+    inboxTitle.innerText = "Today"
     taskArea = document.querySelectorAll(".date-field");
 
     for (let task of taskArea) {
@@ -36,7 +38,8 @@ class InboxSystem {
     }
   }
 
-  showWeekTasks(taskArea) {
+  showWeekTasks(taskArea, inboxTitle) {
+    inboxTitle.innerText = "This Week"
     taskArea = document.querySelectorAll(".date-field");
 
     for (let task of taskArea) {
@@ -56,18 +59,19 @@ class InboxSystem {
     const inboxAll = document.querySelector(".inbox-all");
     const inboxDay = document.querySelector(".inbox-day");
     const inboxWeek = document.querySelector(".inbox-week");
+    const inboxTitle = document.querySelector(".inbox-title")
     let taskArea = document.querySelectorAll(".date-field");
 
     inboxAll.addEventListener("click", () => {
-      this.showAllTasks(taskArea);
+      this.showAllTasks(taskArea, inboxTitle);
     });
 
     inboxDay.addEventListener("click", () => {
-      this.showTodaysTasks(taskArea);
+      this.showTodaysTasks(taskArea, inboxTitle);
     });
 
     inboxWeek.addEventListener("click", () => {
-      this.showWeekTasks(taskArea);
+      this.showWeekTasks(taskArea, inboxTitle);
     });
   }
 }
